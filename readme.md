@@ -21,7 +21,7 @@ $ npm install fski-ajax
 ## Example
 
 ```js
-import { Ajax } from "Ajax";
+import { Ajax } from "fski-ajax";
 ```
 
 utilisation d'une requête `GET` 
@@ -30,8 +30,12 @@ utilisation d'une requête `GET`
   const Ajx = new Ajax("Get", "https://jsonplaceholder.typicode.com/todos/1");
 
   Ajx.then((response) => {
-    const retour = JSON.parse(response.responseText);
-    $elem.innerText = retour.title;
+    try {
+      const retour = JSON.parse(response.responseText);
+      $elem.innerText = retour.title;
+    } catch(e) {
+      $elem.innerText = "error";
+    }
     console.log("Objet ", response);
   });
 
